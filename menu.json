@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "name": "Reading Stats",
+      "priority": 0,
+      "items": [
+        {
+          "name": "Start Logger",
+          "priority": 1,
+          "action": "./bin/readingstats.sh",
+          "params": "start",
+          "exitmenu": false,
+          "refresh": false
+        },
+        {
+          "name": "Stop Logger",
+          "priority": 2,
+          "action": "./bin/readingstats.sh",
+          "params": "stop",
+          "exitmenu": false,
+          "refresh": false
+        },
+        {
+          "name": "Logger Status",
+          "priority": 3,
+          "action": "./bin/readingstats.sh",
+          "params": "status",
+          "exitmenu": false,
+          "refresh": false
+        },
+        {
+          "name": "Export Snapshot Now",
+          "priority": 4,
+          "action": "./bin/readingstats.sh",
+          "params": "snapshot",
+          "exitmenu": false,
+          "refresh": false
+        },
+        {
+          "name": "Show Today Summary",
+          "priority": 5,
+          "action": "./bin/readingstats.sh",
+          "params": "today",
+          "exitmenu": false,
+          "refresh": false
+        }
+      ]
+    }
+  ]
+}

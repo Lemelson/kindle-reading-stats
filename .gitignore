@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Runtime data produced on the Kindle (never commit reader data)
+data/
+state/
+*.jsonl
+*.log
+*.pid
+
+# Editor / misc
+*.swp
+*.tmp
