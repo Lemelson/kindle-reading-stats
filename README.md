@@ -1,6 +1,16 @@
 # Kindle Reading Stats — Passive Reading Statistics Logger (KUAL Extension)
 
+<p align="left">
+  <img alt="KUAL Extension" src="https://img.shields.io/badge/Kindle-KUAL%20Extension-1f2328">
+  <img alt="Pure POSIX Shell" src="https://img.shields.io/badge/Runtime-Pure%20POSIX%20Shell-0969da">
+  <img alt="JSONL Output" src="https://img.shields.io/badge/Format-Append--Only%20JSONL-1a7f37">
+  <img alt="100% Offline" src="https://img.shields.io/badge/Network-Zero%20%C2%B7%20100%25%20Local-6e7781">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-green"></a>
+</p>
+
 **Track your Kindle reading time, pages turned, and reading sessions on a jailbroken Kindle — without KOReader and without patching the native reader.**
+
+![Kindle Reading Stats KUAL e-ink menu and JSONL output preview](docs/img/eink-kual-preview.svg)
 
 Reading Stats is a lightweight [KUAL](https://www.mobileread.com/forums/showthread.php?t=203326)
 extension for **jailbroken Kindle e-readers**. It passively watches the Kindle
@@ -45,6 +55,8 @@ Your reading data never leaves the device unless **you** copy it off.
 ---
 
 ## How it works
+
+![Kindle Reading Stats passive logging architecture](docs/img/architecture.svg)
 
 1. When you start the logger from KUAL, a small background shell process is
    launched (`readingstats.sh collect`).

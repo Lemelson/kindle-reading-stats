@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#59636e"/>
+    </marker>
+    <style>
+      .title { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2328; }
+      .sub { font: 400 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #59636e; }
+      .h { font: 700 14.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2328; }
+      .s { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #424a53; }
+      .m { font: 600 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #1f2328; }
+      .lb { font: 700 12.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="500" rx="14" fill="#ffffff"/>
+  <rect x="1" y="1" width="998" height="498" rx="13" fill="none" stroke="#d0d7de" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text x="34" y="42" class="title">Passive Logging Architecture — Zero Reader Patching</text>
+  <text x="34" y="64" class="sub">Watches the OS logs Amazon's stock reader already writes, storing clean monthly JSONL files locally on your Kindle.</text>
+
+  <!-- Column 1: Stock Kindle OS Logs -->
+  <rect x="34" y="96" width="286" height="270" rx="12" fill="#eff2f5" stroke="#8c959f" stroke-width="1.5"/>
+  <text x="52" y="126" class="h">1. Stock Kindle Reader</text>
+  <text x="52" y="146" class="s">100% untouched · No KOReader</text>
+  <text x="52" y="164" class="s">No JAR hooks · No syslog-ng edits</text>
+  <rect x="50" y="182" width="254" height="166" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.2"/>
+  <text x="64" y="206" class="lb" style="fill:#59636e">Existing OS log files watched:</text>
+  <text x="64" y="232" class="m">/var/log/metrics_generic</text>
+  <text x="64" y="256" class="m">/var/log/metrics_high_priority</text>
+  <text x="64" y="280" class="m">/var/log/messages</text>
+  <text x="64" y="304" class="m">/var/log/cvm</text>
+  <text x="64" y="332" class="s">+ rotated logbackup/*.gz on snapshot</text>
+
+  <line x1="324" y1="230" x2="356" y2="230" stroke="#59636e" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Column 2: KUAL Collector -->
+  <rect x="362" y="96" width="290" height="270" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="380" y="126" class="h">2. readingstats.sh collect</text>
+  <text x="380" y="146" class="s">Pure POSIX /bin/sh · Zero dependencies</text>
+  <text x="380" y="164" class="s">Launched on demand via KUAL menu</text>
+  <rect x="378" y="182" width="258" height="166" rx="8" fill="#ffffff" stroke="#9cd1ff" stroke-width="1.2"/>
+  <text x="392" y="206" class="lb" style="fill:#0969da">Tail-by-offset every ~2 s:</text>
+  <text x="392" y="230" class="s">Tracks exact byte offset per log file</text>
+  <text x="392" y="248" class="s">and filters reading schemas:</text>
+  <text x="392" y="274" class="m">ereader_* · book_page_turn</text>
+  <text x="392" y="294" class="m">open_book · close_book</text>
+  <text x="392" y="314" class="m">reader.activeDuration</text>
+  <text x="392" y="334" class="m">mar_book_read_stats</text>
+
+  <line x1="656" y1="230" x2="688" y2="230" stroke="#59636e" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Column 3: JSONL Output & Offline Analysis -->
+  <rect x="694" y="96" width="272" height="270" rx="12" fill="#f6f8fa" stroke="#8c959f" stroke-width="1.5"/>
+  <text x="712" y="126" class="h">3. Local JSONL &amp; Export</text>
+  <text x="712" y="146" class="s">Append-only monthly files on</text>
+  <text x="712" y="164" class="s">USB-visible user storage:</text>
+  <rect x="710" y="182" width="240" height="72" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.2"/>
+  <text x="722" y="206" class="m">/mnt/us/extensions/</text>
+  <text x="722" y="224" class="m">  readingstats/data/</text>
+  <text x="722" y="242" class="m" style="fill:#0969da">  events-YYYY-MM.jsonl</text>
+
+  <rect x="710" y="268" width="240" height="80" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.2"/>
+  <text x="722" y="292" class="lb" style="fill:#1f2328">Analyze on your computer:</text>
+  <text x="722" y="314" class="s">Copy over USB → process with</text>
+  <text x="722" y="334" class="m">jq · Python · Pandas · Excel</text>
+
+  <!-- Bottom Safety Guardrail Banner -->
+  <rect x="34" y="392" width="932" height="82" rx="12" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.4"/>
+  <text x="52" y="420" class="lb" style="fill:#1a7f37">Privacy &amp; Safety Guarantees</text>
+  <text x="52" y="442" class="s">Zero network code: nothing ever leaves your Kindle unless you copy data/ over USB. Firmware-version-independent across</text>
+  <text x="52" y="460" class="s">Kindle Oasis, Paperwhite, and Basic models running KUAL. Does not touch DRM, books, or Amazon reader binaries.</text>
+</svg>
